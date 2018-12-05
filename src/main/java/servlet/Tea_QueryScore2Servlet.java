@@ -36,17 +36,21 @@ public class Tea_QueryScore2Servlet extends HttpServlet {
                 request.setAttribute("msg8", null);
                 /*以条形统计图的形式显示成绩分布*/
                 DefaultCategoryDataset dcd = new DefaultCategoryDataset();
+
                 for(int i=0;i<scoresection.size();i++){
                     ScoreSection ss = (ScoreSection)scoresection.get(i);
                     dcd.addValue(ss.getNumber(),ss.getSection(),ss.getSection());//参数1是表示数据，参数2表示话题(行名)，参数3表示列名
                     coursename = ss.getCoursename();
                 }
+
                 JFreeChart chart = ChartFactory.createBarChart3D(coursename+"成绩分布","分数段","人数",
                         dcd,PlotOrientation.VERTICAL,true,false,false);//用Chart显示出来
+
                 String filename = ServletUtilities.saveChartAsJPEG(chart,1000,300,request.getSession());//将chart保存为图片文件
                 String chartUri = "/DisplayChart?filename="+filename;
                 request.setAttribute("chartUri", chartUri);
             }
+
             request.getRequestDispatcher("/jsp/teacher/tea_queryscore2.jsp").forward(request, response);//内部跳转
         }catch(Exception ex){	ex.printStackTrace();}
 
