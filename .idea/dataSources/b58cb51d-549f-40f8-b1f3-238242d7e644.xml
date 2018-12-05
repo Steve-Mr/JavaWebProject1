@@ -1107,41 +1107,58 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="278" parent="2" name="T_COURSE"/>
-    <table id="279" parent="2" name="T_SCORE"/>
-    <table id="280" parent="2" name="T_STUDENT"/>
-    <table id="281" parent="2" name="T_TEACHER"/>
-    <column id="282" parent="278" name="COURSENO">
+    <table id="278" parent="2" name="T_ADMIN"/>
+    <table id="279" parent="2" name="T_COURSE"/>
+    <table id="280" parent="2" name="T_SCORE"/>
+    <table id="281" parent="2" name="T_STUDENT"/>
+    <table id="282" parent="2" name="T_TEACHER"/>
+    <column id="283" parent="278" name="ADMIN">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="278" name="COURSENAME">
+    <column id="284" parent="278" name="PWD">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="278" name="CREDIT">
+    <key id="285" parent="278" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ADMIN</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="286" parent="279" name="COURSENO">
+      <Position>1</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="287" parent="279" name="COURSENAME">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="288" parent="279" name="CREDIT">
       <Position>3</Position>
       <DataType>float|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="278" name="TEANO">
+    <column id="289" parent="279" name="TEANO">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="286" parent="278" name="TEANO">
+    <index id="290" parent="279" name="TEANO">
       <ColNames>TEANO</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="287" parent="278" name="PRIMARY">
+    <key id="291" parent="279" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>COURSENO</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="288" parent="278" name="T_COURSE_ibfk_1">
+    <foreign-key id="292" parent="279" name="T_COURSE_ibfk_1">
       <ColNames>TEANO</ColNames>
       <RefSchemaName>SCHOOL</RefSchemaName>
       <RefTableName>T_TEACHER</RefTableName>
@@ -1149,39 +1166,39 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="289" parent="279" name="STUNO">
+    <column id="293" parent="280" name="STUNO">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="279" name="COURSENO">
+    <column id="294" parent="280" name="COURSENO">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="279" name="SCORE">
+    <column id="295" parent="280" name="SCORE">
       <Position>3</Position>
       <DataType>float|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="279" name="STATE">
+    <column id="296" parent="280" name="STATE">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="293" parent="279" name="COURSENO">
+    <index id="297" parent="280" name="COURSENO">
       <ColNames>COURSENO</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="294" parent="279" name="PRIMARY">
+    <key id="298" parent="280" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>STUNO
 COURSENO</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="295" parent="279" name="T_SCORE_ibfk_1">
+    <foreign-key id="299" parent="280" name="T_SCORE_ibfk_1">
       <ColNames>STUNO</ColNames>
       <RefSchemaName>SCHOOL</RefSchemaName>
       <RefTableName>T_STUDENT</RefTableName>
@@ -1189,7 +1206,7 @@ COURSENO</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="296" parent="279" name="T_SCORE_ibfk_2">
+    <foreign-key id="300" parent="280" name="T_SCORE_ibfk_2">
       <ColNames>COURSENO</ColNames>
       <RefSchemaName>SCHOOL</RefSchemaName>
       <RefTableName>T_COURSE</RefTableName>
@@ -1197,65 +1214,65 @@ COURSENO</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="297" parent="280" name="STUNO">
+    <column id="301" parent="281" name="STUNO">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="298" parent="280" name="STUPWD">
+    <column id="302" parent="281" name="STUPWD">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="280" name="STUNAME">
+    <column id="303" parent="281" name="STUNAME">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="280" name="STUSEX">
+    <column id="304" parent="281" name="STUSEX">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="301" parent="280" name="PRIMARY">
+    <key id="305" parent="281" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>STUNO</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="302" parent="281" name="TEANO">
+    <column id="306" parent="282" name="TEANO">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="281" name="TEAPWD">
+    <column id="307" parent="282" name="TEAPWD">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="281" name="TEANAME">
+    <column id="308" parent="282" name="TEANAME">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="305" parent="281" name="TEASEX">
+    <column id="309" parent="282" name="TEASEX">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="306" parent="281" name="TITLE">
+    <column id="310" parent="282" name="TITLE">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="307" parent="281" name="PRIMARY">
+    <key id="311" parent="282" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>TEANO</ColNames>
       <Primary>1</Primary>

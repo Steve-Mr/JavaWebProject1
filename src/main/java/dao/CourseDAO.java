@@ -13,7 +13,7 @@ public class CourseDAO {
     public ArrayList getAllCoursename() throws Exception{//获得所有课程名称
         ArrayList al = new ArrayList();
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         String sql = "select distinct(coursename) from T_COURSE";
         Statement stat = conn.createStatement();
         ResultSet rs = stat.executeQuery(sql);
@@ -28,7 +28,7 @@ public class CourseDAO {
     public ArrayList getAllCourse() throws Exception{//获得所有课程
         ArrayList al = new ArrayList();
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         String sql = "select * from T_COURSE A join T_TEACHER B on A.TEANO = B.TEANO";
         Statement stat = conn.createStatement();
         ResultSet rs = stat.executeQuery(sql);
@@ -48,7 +48,7 @@ public class CourseDAO {
 
     public Course getCourseByCourseno(String courseno) throws Exception{//根据课程号获取课程信息
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         Course cou = null;
         String sql = "select * from T_COURSE A join T_TEACHER B on A.teano = B.teano where A.courseno='"+courseno+"'";
         Statement stat = conn.createStatement();
@@ -69,7 +69,7 @@ public class CourseDAO {
     public ArrayList getCourseByTeano(String teano) throws Exception{//获得相应职工号的开课情况
         ArrayList al = new ArrayList();
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         String sql = "select * from T_COURSE A join T_TEACHER B on A.teano = B.teano where B.teano='"+teano+"'";;
         Statement stat = conn.createStatement();
         ResultSet rs = stat.executeQuery(sql);
@@ -90,7 +90,7 @@ public class CourseDAO {
     public ArrayList getCourseByStuno(String stuno) throws Exception{//获得相应学号选修好的课程
         ArrayList al = new ArrayList();
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         String sql = "select * from T_COURSE A join T_SCORE B on A.courseno=B.courseno join T_TEACHER C on A.teano=C.teano"
                 +" where B.stuno='"+stuno+"'";
         Statement stat = conn.createStatement();
@@ -108,7 +108,5 @@ public class CourseDAO {
 
         return al;
     }
-
-
 
 }

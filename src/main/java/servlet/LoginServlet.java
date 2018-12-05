@@ -1,7 +1,9 @@
 package servlet;
 
+import dao.AdminDAO;
 import dao.StudentDAO;
 import dao.TeacherDAO;
+import vo.Admin;
 import vo.Student;
 import vo.Teacher;
 
@@ -62,6 +64,26 @@ public class LoginServlet extends HttpServlet {
                             response.sendRedirect("/jsp/teacher/tea_ope.jsp");
                         }
                     }catch(Exception ex){	ex.printStackTrace();}
+                }
+                /*3.3 管理员登录*/
+                else if(type.equals("admin")){
+                    AdminDAO adao = new AdminDAO();
+                    type = "管理员";
+                    try{
+                        Admin adm = adao.getAdminByAdmin(account);
+                        if(adm == null || !adm.getPassword().equals(password)){
+                            request.setAttribute("msg1", "帐号或密码输入有误,登录失败！");
+                            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+                            dispatcher.forward(request, response);
+                        }
+                        else{
+                            request.getSession().setAttribute("admin",adm);
+                            request.getSession().setAttribute("type",type);
+                            response.sendRedirect("/jsp/admin/admin_ope.jsp");
+                        }
+                    }catch(Exception ex){
+                        ex.printStackTrace();
+                    }
                 }
             }
         }

@@ -3,6 +3,7 @@ package dao;
 import vo.Score;
 import vo.ScoreSection;
 
+import javax.servlet.jsp.jstl.sql.Result;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ public class ScoreDAO {
 
     public ArrayList getScoreByCourseno(String courseno) throws Exception{//获得某课程的考试信息
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         ArrayList al = new ArrayList();
         Statement stat = conn.createStatement();
         String sql = "select * from T_SCORE A join T_COURSE B on A.courseno=B.courseno join T_STUDENT C on A.stuno=C.stuno"
@@ -32,7 +33,7 @@ public class ScoreDAO {
 
     public ArrayList getScoreSectionByCourseno(String courseno) throws Exception{//获得某课程的成绩分布
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         ArrayList al = new ArrayList();
         Statement stat = conn.createStatement();
         String sql = "select courseno,coursename,case when score between 0 and 60 then '0-60' "+
@@ -63,7 +64,7 @@ public class ScoreDAO {
 
     public ArrayList getScoreByStuno(String stuno) throws Exception{//获得相应学号的考试信息
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         ArrayList al = new ArrayList();
         Statement stat = conn.createStatement();
         String sql = "select * from T_SCORE A join T_STUDENT B on A.stuno=B.stuno join T_COURSE C on A.courseno=C.courseno"
@@ -85,7 +86,7 @@ public class ScoreDAO {
 
     public void insertScore(Score sco)throws Exception{
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         String sql = "insert into T_SCORE(stuno,courseno) values(?,?)";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, sco.getStuno());
@@ -97,7 +98,7 @@ public class ScoreDAO {
 
     public void updateScore(Score sco)throws Exception{
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         String sql = "update T_SCORE set score=?,state=? where stuno=? and courseno=?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setFloat(1, sco.getScore());
@@ -107,6 +108,38 @@ public class ScoreDAO {
         ps.executeUpdate();
         conn.close();
 
+    }
+
+    private Connection conn = null;
+
+    public void initConnection() throws Exception{
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+    }
+
+    public void closeConnection() throws Exception{
+        conn.close();
+    }
+
+    public int getStudentCount(String courseno){
+        String sql ="select COUNT(*) from T_SCORE A join T_COURSE B  on A.courseno=B.courseno join T_STUDENT C on A.stuno=C.stuno"+ " where A.courseno='"+courseno+"'";
+        try{
+            this.initConnection();
+            Statement stat = conn.createStatement();
+            ResultSet rs = stat.executeQuery(sql);
+            rs.next();
+            int pageCount = rs.getInt(1);
+            return pageCount;
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            try{
+                this.closeConnection();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return 0;
     }
 
 }

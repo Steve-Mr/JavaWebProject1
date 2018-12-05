@@ -9,7 +9,7 @@ public class TeacherDAO {
     public Teacher getTeacherByTeano(String teano) throws Exception{
         Teacher tea = null;
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         Statement stat = conn.createStatement();
         String sql = "SELECT * FROM T_TEACHER WHERE TEANO ='"+teano+"'";
         ResultSet rs = stat.executeQuery(sql);
@@ -28,7 +28,7 @@ public class TeacherDAO {
 
     public void updateTeacher(Teacher tea) throws Exception{
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false", "scott", "tiger");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         String sql = "UPDATE T_TEACHER SET TEAPWD = ? WHERE TEANO =?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1,tea.getPassword());

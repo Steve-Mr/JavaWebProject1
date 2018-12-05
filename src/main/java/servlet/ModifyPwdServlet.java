@@ -1,7 +1,9 @@
 package servlet;
 
+import dao.AdminDAO;
 import dao.StudentDAO;
 import dao.TeacherDAO;
+import vo.Admin;
 import vo.Student;
 import vo.Teacher;
 
@@ -57,6 +59,22 @@ public class ModifyPwdServlet extends HttpServlet {
                     try{
                         tdao.updateTeacher(tea);
                     }catch(Exception ex){	ex.printStackTrace();}
+                    request.setAttribute("okMsg9", "密码修改成功！ （为了保证您的帐号安全，建议重新登录！！）");
+                }
+            }
+            else if(type.equals("管理员")){
+                Admin admin = (Admin)request.getSession().getAttribute("admin");
+                if(!oldPassword.equals(admin.getPassword())){
+                    request.setAttribute("msg9", "请输入正确的旧密码");
+                }
+                else{
+                    AdminDAO adao = new AdminDAO();
+                    admin.setPassword(newPassword1);
+                    try{
+                        adao.updateAdmin(admin);
+                    }catch(Exception ex){
+                        ex.printStackTrace();
+                    }
                     request.setAttribute("okMsg9", "密码修改成功！ （为了保证您的帐号安全，建议重新登录！！）");
                 }
             }
