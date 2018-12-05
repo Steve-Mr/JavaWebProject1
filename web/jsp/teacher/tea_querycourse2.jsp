@@ -29,10 +29,10 @@
                             </c:when>
                             <c:otherwise>
                                 <c:choose>
-                                    <c:when test="${score.operation==null||score.operation=='暂存'}">
+                                    <c:when test="${score.state==null||score.state=='暂存'}">
                                         <div align="center"><input type="text" name="score" value="${score.score }"></div>
                                     </c:when>
-                                    <c:when test="${score.operation=='提交'}">
+                                    <c:when test="${score.state=='提交'}">
                                         <div align="center">${score.score }</div>
                                     </c:when>
                                 </c:choose>

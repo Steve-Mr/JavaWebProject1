@@ -21,7 +21,7 @@
             <td><div align="center">${course.courseno }</div></td>
             <td><div align="center">${course.coursename }</div></td>
             <td><div align="center">${course.credit }</div></td>
-            <td><div align="center"><a href="/servlet/Tea_EntryScore2Servlet?courseno=${course.courseno }">录入分数</div></td>
+            <td><div align="center"><a href="/servlet/Tea_EntryScore2Servlet?courseno=${course.courseno }">录入分数</a></div></td>
         </tr>
     </c:forEach>
 </table>

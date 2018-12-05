@@ -89,12 +89,10 @@
         <servlet-name>Stu_ExportScoreServlet</servlet-name>
         <servlet-class>servlet.Stu_ExportScoreServlet</servlet-class>
     </servlet>
-    <!--
     <servlet>
         <servlet-name>Tea_ExportScoreServlet</servlet-name>
         <servlet-class>servlet.Tea_ExportScoreServlet</servlet-class>
     </servlet>
-    -->
     <servlet>
         <servlet-name>ModifyPwdServlet</servlet-name>
         <servlet-class>servlet.ModifyPwdServlet</servlet-class>
@@ -155,12 +153,10 @@
         <servlet-name>Stu_ExportScoreServlet</servlet-name>
         <url-pattern>/servlet/Stu_ExportScoreServlet</url-pattern>
     </servlet-mapping>
-    <!--
     <servlet-mapping>
         <servlet-name>Tea_ExportScoreServlet</servlet-name>
         <url-pattern>/servlet/Tea_ExportScoreServlet</url-pattern>
     </servlet-mapping>
-    -->
     <servlet-mapping>
         <servlet-name>ModifyPwdServlet</servlet-name>
         <url-pattern>/servlet/ModifyPwdServlet</url-pattern>
