@@ -26,6 +26,8 @@ import dao.TeacherDAO;
 
 public class Stu_ExportScoreServlet extends HttpServlet {
 
+    //todo: windows support
+
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

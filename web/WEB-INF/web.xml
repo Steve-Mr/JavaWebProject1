@@ -105,6 +105,14 @@
         <servlet-name>Admin_ManageStudentsServlet</servlet-name>
         <servlet-class>servlet.Admin_ManageStudentsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin_ManageTeachersServlet</servlet-name>
+        <servlet-class>servlet.Admin_ManageTeachersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin_ManageCoursesServlet</servlet-name>
+        <servlet-class>servlet.Admin_ManageCoursesServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -176,6 +184,14 @@
     <servlet-mapping>
         <servlet-name>Admin_ManageStudentsServlet</servlet-name>
         <url-pattern>/servlet/Admin_ManageStudentsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_ManageTeachersServlet</servlet-name>
+        <url-pattern>/servlet/Admin_ManageTeachersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_ManageCoursesServlet</servlet-name>
+        <url-pattern>/servlet/Admin_ManageCoursesServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

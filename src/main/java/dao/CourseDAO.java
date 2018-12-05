@@ -1,11 +1,9 @@
 package dao;
 
 import vo.Course;
+import vo.Student;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class CourseDAO {
@@ -107,6 +105,69 @@ public class CourseDAO {
         conn.close();
 
         return al;
+    }
+
+    private Connection conn = null;
+
+    public void initConnection() throws Exception{
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+    }
+
+    public void closeConnection() throws Exception{
+        conn.close();
+    }
+
+    public int getCourseCount(){ //获取课程总数
+        try{
+            this.initConnection();
+            String sql = "SELECT COUNT(*) FROM T_COURSE";
+            Statement stat = conn.createStatement();
+            ResultSet rs = stat.executeQuery(sql);
+            rs.next();
+            int pageCouont = rs.getInt(1);
+            return pageCouont;
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally {
+            try{
+                this.closeConnection();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
+
+    public ArrayList queryPage(int currentPageIndex, int countPerPage){
+        String sql = "SELECT distinct COURSENO,COURSENAME,CREDIT,TEANAME  from T_COURSE A join T_TEACHER B on A.TEANO = B.TEANO LIMIT ?,?";
+        ArrayList pageStudents = new ArrayList();
+        try{
+            this.initConnection();
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ps.setInt(1,(currentPageIndex-1)*countPerPage);
+            ps.setInt(2,currentPageIndex*countPerPage);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Course course = new Course();
+                course.setCourseno((rs.getString("COURSENO")));
+                course.setCoursename(rs.getString("COURSENAME"));
+                course.setTeaname(rs.getString("TEANAME"));
+                course.setCredit(rs.getFloat("CREDIT"));
+                pageStudents.add(course);
+            }
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        finally {
+            try{
+                this.closeConnection();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return pageStudents;
     }
 
 }
