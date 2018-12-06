@@ -10,21 +10,15 @@
     </tr>
     <tr bgcolor="yellow">
         <td>学号</td>
+        <td>密码</td>
         <td>姓名</td>
         <td>性别</td>
     </tr>
-    <c:forEach items="${pageStudents}" var="student">
-        <tr bgcolor="pink">
-            <td>${student.stuno }</td>
-            <td>${student.stuname }</td>
-            <td>${student.stusex }</td>
-        </tr>
-    </c:forEach>
-    <tr bgcolor="#B0E0E6">
-        <td colspan="5"><font color="#556B2F"> 共${studentCount}条记录;
-            共${pageCount}页;
-            当前第${currentPageIndex}页.</font></td>
-    </tr>
+            <td>${requestScope.selectedstudent.stuno}</td>
+    <td>${requestScope.selectedstudent.password}</td>
+    <td>    ${requestScope.selectedstudent.stuname}</td>
+    <td>    ${requestScope.selectedstudent.stusex}</td>
+
 </table>
 <tr height="10%"><td width="10%" align="center"><a href="/jsp/admin/admin_addstudent.jsp"  style=text-decoration:none>添加学生</a></td></tr>
 
@@ -36,12 +30,5 @@
     <a href="/servlet/Admin_ManageStudentsServlet?pageIndex=${currentPageIndex+1}">下一页</a>
 </c:if>
 <a href="/servlet/Admin_ManageStudentsServlet?pageIndex=${pageCount}">尾页</a>
-<tr>
-    <form action="/servlet/Admin_QueryStudentServlet" method="post">
-        输入查找学生学号：<br>
-        <input name = "stuno" type = "text">
-        <input type = "submit" value="搜索">
-    </form>
-</tr>
 </body>
 </html>

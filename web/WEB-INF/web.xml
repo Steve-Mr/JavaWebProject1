@@ -117,6 +117,11 @@
         <servlet-name>Admin_AddStudentServlet</servlet-name>
         <servlet-class>servlet.Admin_AddStudentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin_QueryStudentServlet</servlet-name>
+        <servlet-class>servlet.Admin_QueryStudentServlet</servlet-class>
+    </servlet>
+
 
 
     <servlet-mapping>
@@ -200,6 +205,10 @@
     <servlet-mapping>
         <servlet-name>Admin_AddStudentServlet</servlet-name>
         <url-pattern>/servlet/Admin_AddStudentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_QueryStudentServlet</servlet-name>
+        <url-pattern>/servlet/Admin_QueryStudentServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

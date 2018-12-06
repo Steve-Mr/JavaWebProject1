@@ -11,8 +11,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//todo: check page2
-
 public class Admin_ManageCoursesServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request,HttpServletResponse response)
