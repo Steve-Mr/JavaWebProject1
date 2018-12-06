@@ -13,7 +13,6 @@ import java.io.IOException;
 public class Admin_ModifyStudentServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-
+        String numOfStu = request.getParameter("numOfStu");
     }
 }

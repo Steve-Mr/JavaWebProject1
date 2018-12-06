@@ -1,5 +1,6 @@
 package servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -26,7 +27,6 @@ import dao.TeacherDAO;
 
 public class Tea_ExportScoreServlet extends HttpServlet {
 
-    // todo: windows support
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,7 +46,14 @@ public class Tea_ExportScoreServlet extends HttpServlet {
                 Table  t = new Table(5,5);
                 t.setDefaultHorizontalAlignment(Table.ALIGN_CENTER);
                 t.setPadding(4);//边框和文字的距离
-                BaseFont baseFont = BaseFont.createFont("/usr/share/fonts/msyh.ttf",BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);
+                String prefixFont = "";
+                String os = System.getProperties().getProperty("os.name");
+                if (os.startsWith("win") || os.startsWith("Win")) {
+                    prefixFont = "C:\\Windows\\Fonts" + File.separator;
+                } else {
+                    prefixFont = "/usr/share/fonts" + File.separator;
+                }
+                BaseFont baseFont = BaseFont.createFont(prefixFont+"/msyh.ttf",BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);
                 Font font = new Font(baseFont,10);//10表示字体大小
                 for(int i=0;i<scores.size();i++){
                     sco = (Score)scores.get(i);
