@@ -26,6 +26,8 @@
             当前第${currentPageIndex}页.</font></td>
     </tr>
 </table>
+<tr height="10%"><td width="10%" align="center"><a href="/jsp/admin/admin_addstudent.jsp"  style=text-decoration:none>添加学生</a></td></tr>
+
 <a href="/servlet/Admin_ManageStudentsServlet?pageIndex=1">首页</a>
 <c:if test="${currentPageIndex!=1}">
     <a href="/servlet/Admin_ManageStudentsServlet?pageIndex=${currentPageIndex-1}">上一页</a>

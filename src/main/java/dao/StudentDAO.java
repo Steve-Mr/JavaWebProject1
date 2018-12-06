@@ -6,11 +6,23 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class StudentDAO {
+    private Connection conn = null;
+
+    public void initConnection() throws Exception{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+    }
+
+    public void closeConnection() throws Exception{
+        conn.close();
+    }
 
     public Student getStudentByStuno(String stuno) throws Exception{//通过学号获得学生信息
         Student stu = null;//attention！
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+
+        this.initConnection();
+        //Class.forName("com.mysql.jdbc.Driver");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
 
         Statement stat = conn.createStatement();
         String sql = "select * from T_STUDENT where STUNO='"+stuno+"'";
@@ -22,11 +34,12 @@ public class StudentDAO {
             stu.setStuname(rs.getString("STUNAME").trim());
             stu.setStusex(rs.getString("STUSEX").trim());
         }
-        conn.close();
+        //conn.close();
+        this.closeConnection();
         return stu;
     }
 
-    public void updateStudent(Student stu) throws Exception{//修改学生信息
+    public void updateStudent(Student stu) throws Exception{//修改学生密码
         Class.forName("com.mysql.jdbc.Driver");
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         String sql = "update T_STUDENT set stupwd=? where stuno=?";
@@ -35,6 +48,32 @@ public class StudentDAO {
         ps.setString(2, stu.getStuno());
         ps.executeUpdate();
         conn.close();
+    }
+
+    public void insertStudent(String stuno,String stupwd,String stuname,String stusex) throws Exception{
+        //新建学生
+        this.initConnection();
+        String sql = "INSERT INTO T_STUDENT VALUES(?,?,?,?)";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1,stuno);
+        ps.setString(2,stupwd);
+        ps.setString(3,stuname);
+        ps.setString(4,stusex);
+        ps.executeUpdate();
+        this.closeConnection();
+    }
+
+    public void modifyStudent(Student stu,String stuno) throws Exception{
+        //修改学生信息
+        this.initConnection();
+        String sql = "update T_STUDENT set stuno=?, stupwd=?, stuname=?, stusex=? where stuno='"+stuno+"'";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, stu.getStuno());
+        ps.setString(2, stu.getPassword());
+        ps.setString(3, stu.getStuname());
+        ps.setString(4, stu.getStusex());
+        ps.executeUpdate();
+        this.closeConnection();
     }
 
     public int getStudentCount(){ //获取学生总数
@@ -65,7 +104,7 @@ public class StudentDAO {
             this.initConnection();
             PreparedStatement ps= conn.prepareStatement(sql);
             ps.setInt(1,(currentPageIndex-1)*countPerPage);
-            ps.setInt(2,currentPageIndex*countPerPage);
+            ps.setInt(2,countPerPage);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Student student = new Student();
@@ -88,14 +127,5 @@ public class StudentDAO {
         return pageStudents;
     }
 
-    private Connection conn = null;
 
-    public void initConnection() throws Exception{
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-        conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
-    }
-
-    public void closeConnection() throws Exception{
-        conn.close();
-    }
 }

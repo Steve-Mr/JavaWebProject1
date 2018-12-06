@@ -113,6 +113,10 @@
         <servlet-name>Admin_ManageCoursesServlet</servlet-name>
         <servlet-class>servlet.Admin_ManageCoursesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin_AddStudentServlet</servlet-name>
+        <servlet-class>servlet.Admin_AddStudentServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -192,6 +196,10 @@
     <servlet-mapping>
         <servlet-name>Admin_ManageCoursesServlet</servlet-name>
         <url-pattern>/servlet/Admin_ManageCoursesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_AddStudentServlet</servlet-name>
+        <url-pattern>/servlet/Admin_AddStudentServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

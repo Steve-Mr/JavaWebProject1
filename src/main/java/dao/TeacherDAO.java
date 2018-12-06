@@ -7,10 +7,22 @@ import java.util.ArrayList;
 
 public class TeacherDAO {
 
+    private Connection conn = null;
+
+    public void initConnection() throws Exception{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+    }
+
+    public void closeConnection() throws Exception{
+        conn.close();
+    }
+
     public Teacher getTeacherByTeano(String teano) throws Exception{
         Teacher tea = null;
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        this.initConnection();
+        //Class.forName("com.mysql.jdbc.Driver");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
         Statement stat = conn.createStatement();
         String sql = "SELECT * FROM T_TEACHER WHERE TEANO ='"+teano+"'";
         ResultSet rs = stat.executeQuery(sql);
@@ -22,8 +34,8 @@ public class TeacherDAO {
             tea.setTeasex(rs.getString("TEASEX").trim());
             tea.setTitle(rs.getString("TITLE").trim());
         }
-        conn.close();
-
+        //conn.close();
+        this.closeConnection();
         return tea;
     }
 
@@ -39,16 +51,7 @@ public class TeacherDAO {
 
     }
 
-    private Connection conn = null;
 
-    public void initConnection() throws Exception{
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-        conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
-    }
-
-    public void closeConnection() throws Exception{
-        conn.close();
-    }
 
     public int getTeacherCount(){
         try{
@@ -78,7 +81,7 @@ public class TeacherDAO {
             this.initConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, (currentPageIndex - 1) * countPerPage);
-            ps.setInt(2, currentPageIndex * countPerPage);
+            ps.setInt(2, countPerPage);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Teacher teacher = new Teacher();

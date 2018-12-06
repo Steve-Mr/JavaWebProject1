@@ -110,7 +110,7 @@ public class CourseDAO {
     private Connection conn = null;
 
     public void initConnection() throws Exception{
-        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Class.forName("com.mysql.jdbc.Driver");
         conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
     }
 
@@ -146,7 +146,7 @@ public class CourseDAO {
             this.initConnection();
             PreparedStatement ps= conn.prepareStatement(sql);
             ps.setInt(1,(currentPageIndex-1)*countPerPage);
-            ps.setInt(2,currentPageIndex*countPerPage);
+            ps.setInt(2,countPerPage);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Course course = new Course();

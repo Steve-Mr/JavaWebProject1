@@ -113,7 +113,7 @@ public class ScoreDAO {
     private Connection conn = null;
 
     public void initConnection() throws Exception{
-        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Class.forName("com.mysql.jdbc.Driver");
         conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
     }
 
