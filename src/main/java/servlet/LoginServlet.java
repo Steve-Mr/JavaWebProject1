@@ -17,7 +17,7 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException{
+            throws ServletException, IOException{
         String code = request.getParameter("code");//验证码
         String account = request.getParameter("account");//帐号
         String password = request.getParameter("password");//密码

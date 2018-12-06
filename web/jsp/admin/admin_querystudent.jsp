@@ -14,8 +14,8 @@
         <td>ÐÕÃû</td>
         <td>ÐÔ±ð</td>
     </tr>
-            <td>${requestScope.selectedstudent.stuno}</td>
-    <td>${requestScope.selectedstudent.password}</td>
+    <td>    ${requestScope.selectedstudent.stuno}</td>
+    <td>    ${requestScope.selectedstudent.password}</td>
     <td>    ${requestScope.selectedstudent.stuname}</td>
     <td>    ${requestScope.selectedstudent.stusex}</td>
 
