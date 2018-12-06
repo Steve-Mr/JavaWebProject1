@@ -21,8 +21,6 @@ public class StudentDAO {
         Student stu = null;//attention！
 
         this.initConnection();
-        //Class.forName("com.mysql.jdbc.Driver");
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
 
         Statement stat = conn.createStatement();
         String sql = "select * from T_STUDENT where STUNO='"+stuno+"'";
@@ -34,7 +32,6 @@ public class StudentDAO {
             stu.setStuname(rs.getString("STUNAME").trim());
             stu.setStusex(rs.getString("STUSEX").trim());
         }
-        //conn.close();
         this.closeConnection();
         return stu;
     }
@@ -95,6 +92,15 @@ public class StudentDAO {
             }
         }
         return 0;
+    }
+
+    public void deleteStudent(String stuno) throws Exception{
+        //删除学生
+        this.initConnection();
+        String sql = "DELETE FROM T_STUDENT WHERE STUNO = '"+stuno+"'";
+        Statement stat = conn.createStatement();
+        stat.executeUpdate(sql);
+        this.closeConnection();
     }
 
     public ArrayList queryPage(int currentPageIndex, int countPerPage){

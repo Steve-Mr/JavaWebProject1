@@ -121,6 +121,10 @@
         <servlet-name>Admin_QueryStudentServlet</servlet-name>
         <servlet-class>servlet.Admin_QueryStudentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin_deleteStudentServlet</servlet-name>
+        <servlet-class>servlet.Admin_deleteStudentServlet</servlet-class>
+    </servlet>
 
 
 
@@ -209,6 +213,10 @@
     <servlet-mapping>
         <servlet-name>Admin_QueryStudentServlet</servlet-name>
         <url-pattern>/servlet/Admin_QueryStudentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_deleteStudentServlet</servlet-name>
+        <url-pattern>/servlet/Admin_deleteStudentServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>
