@@ -19,7 +19,6 @@ public class Admin_QueryStudentServlet extends HttpServlet {
         String stuno = (String)request.getParameter("stuno");
         try{
             Student stu = sdao.getStudentByStuno(stuno);
-            System.out.println(stu.getStuname());
             request.setAttribute("selectedstudent",stu);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/admin/admin_querystudent.jsp");
             dispatcher.forward(request, response); //内部跳转，将处理信息存储在request中

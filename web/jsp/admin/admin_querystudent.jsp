@@ -20,9 +20,10 @@
     <td>    ${requestScope.selectedstudent.stusex}</td>
 
 </table>
-<tr height="10%"><td width="10%" align="center"><a href="/servlet/ModifyPwdServlet?numOfStu=${requestScope.selectedstudent.stuno}"  style=text-decoration:none>修改学生信息</a></td></tr>
+<tr height="10%"><td width="10%" align="center"><button onclick="location.href='/servlet/Admin_ModifyStudentServlet?numOfStu=${requestScope.selectedstudent.stuno}'">修改</button></a></td></tr>
 
-<a href="/servlet/Admin_deleteStudentServlet?numOfStu=${requestScope.selectedstudent.stuno}">删除</a>
+<tr height="10%"><td width="10%" align="center"><button onclick="location.href='/servlet/Admin_deleteStudentServlet?numOfStu=${requestScope.selectedstudent.stuno}'">删除</button></a></td></tr>
+
 
 </body>
 </html>

@@ -63,12 +63,11 @@ public class StudentDAO {
     public void modifyStudent(Student stu,String stuno) throws Exception{
         //修改学生信息
         this.initConnection();
-        String sql = "update T_STUDENT set stuno=?, stupwd=?, stuname=?, stusex=? where stuno='"+stuno+"'";
+        String sql = "update T_STUDENT set stupwd=?, stuname=?, stusex=? where stuno='"+stuno+"'";
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, stu.getStuno());
-        ps.setString(2, stu.getPassword());
-        ps.setString(3, stu.getStuname());
-        ps.setString(4, stu.getStusex());
+        ps.setString(1, stu.getPassword());
+        ps.setString(2, stu.getStuname());
+        ps.setString(3, stu.getStusex());
         ps.executeUpdate();
         this.closeConnection();
     }
