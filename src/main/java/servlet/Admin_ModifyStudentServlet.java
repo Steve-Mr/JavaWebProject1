@@ -43,17 +43,23 @@ public class Admin_ModifyStudentServlet extends HttpServlet {
             String stusex = request.getParameter("stusex");//教师录入的分数
             System.out.println(stusex);
 
-            Student student = new Student();
-            student.setStuno(stuno);
-            student.setPassword(stupwd);
-            student.setStuname(stuname);
-            student.setStusex(stusex);
-            StudentDAO sdao = new StudentDAO();
-            sdao.modifyStudent(student, stuno);
+            if(stupwd.equals("")||stuname.equals("")||stusex.equals("")){
+                request.setAttribute("erMsg1","请检查学生信息");
+            }else {
+                Student student = new Student();
+                student.setStuno(stuno);
+                student.setPassword(stupwd);
+                student.setStuname(stuname);
+                student.setStusex(stusex);
+                StudentDAO sdao = new StudentDAO();
+                sdao.modifyStudent(student, stuno);
+                request.setAttribute("okayMsg1", "学生修改成功");
 
+            }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/admin/admin_modifystudent.jsp");
             dispatcher.forward(request, response); //内部跳转，将处理信息存储在request中
-        }catch (Exception e){
+
+            }catch (Exception e){
             e.printStackTrace();
         }
     }

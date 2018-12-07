@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <body bgcolor=#cdf2e3>
-<center><font size="+1" color="red">${msg4}</font></center>
+<center><font size="+1" color="red">${erMsg1}</font></center>	<br><br>
 
 <table width="1000" height="200" align="center" border="1" cellpadding="3">
     <tr bgcolor="#B0E0E6">
@@ -20,9 +20,9 @@
     <td>    ${requestScope.selectedstudent.stusex}</td>
 
 </table>
-<tr height="10%"><td width="10%" align="center"><button onclick="location.href='/servlet/Admin_ModifyStudentServlet?numOfStu=${requestScope.selectedstudent.stuno}'">ÐÞ¸Ä</button></a></td></tr>
+<tr height="10%"><td width="10%" align="center"><td><a><button onclick="location.href='/servlet/Admin_ModifyStudentServlet?numOfStu=${requestScope.selectedstudent.stuno}'">ÐÞ¸Ä</button></a></td></tr>
 
-<tr height="10%"><td width="10%" align="center"><button onclick="location.href='/servlet/Admin_deleteStudentServlet?numOfStu=${requestScope.selectedstudent.stuno}'">É¾³ý</button></a></td></tr>
+<tr height="10%"><td width="10%" align="center"><td><a><button onclick="location.href='/servlet/Admin_deleteStudentServlet?numOfStu=${requestScope.selectedstudent.stuno}'">É¾³ý</button></a></td></tr>
 
 
 </body>

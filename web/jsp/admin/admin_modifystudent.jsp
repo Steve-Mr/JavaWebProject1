@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <body bgcolor=#cdf2e3>
-<center><font size="+1" color="red">${msg4}</font></center>
+<center><font size="+1" color="red">${okayMsg1}</font></center>	<br><br>
 <form action="/servlet/Admin_ModifyStudentServlet" method="post">
 <table width="1000" height="200" align="center" border="1" cellpadding="3">
     <tr bgcolor="#B0E0E6">
@@ -21,6 +21,9 @@
 
 </table>
 <td><div><input type="submit" name="submit" value="È·ÈÏÐÞ¸Ä"></div></td>
-
+    <tr>
+        <td colspan=2 align=center><font color=red size=-1>${erMsg1}</font></td>
+    </tr>
+</form>
 </body>
 </html>

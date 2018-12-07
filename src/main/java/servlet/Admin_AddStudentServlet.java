@@ -21,27 +21,29 @@ public class Admin_AddStudentServlet extends HttpServlet {
         String stusex = request.getParameter("stusex");
 
         if(stuno.equals("")||stupwd.equals("")||stuname.equals("")||stusex.equals("")){
-            request.setAttribute("erMsg1","请检查学生信息");
+            //填入的信息不得为空
+            request.setAttribute("erMsg1","输入信息不得为空，请检查学生信息");
         }
-        else{
+        else{ //拒绝若数据库中以存在相同 stuno 记录
             StudentDAO sdao = new StudentDAO();
-            String checkName="";
+            //String checkName="";
             try{
                 Student stu = sdao.getStudentByStuno(stuno);
-                checkName = stu.getStuname();
+                //checkName+= stu.getStuname();
+
+                if(stu!=null){
+                    request.setAttribute("erMsg1","该学号已经存在，请检查学生信息");
+                }
+                else {
+                    try {
+                    sdao.insertStudent(stuno, stupwd, stuname, stusex);
+                    } catch (Exception e) {
+                    e.printStackTrace();
+                    }
+                    request.setAttribute("okayMsg1", "学生添加成功");
+                }
             }catch (Exception ex){
                 ex.printStackTrace();
-            }
-            if(!checkName.equals("")){
-                request.setAttribute("erMsg1","请检查学生信息");
-            }
-            else {
-                try {
-                    sdao.insertStudent(stuno, stupwd, stuname, stusex);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                request.setAttribute("okayMsg1", "学生添加成功");
             }
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/admin/admin_addstudent.jsp");
