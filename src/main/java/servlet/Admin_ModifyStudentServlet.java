@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//todo : modify student
 public class Admin_ModifyStudentServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,17 +30,17 @@ public class Admin_ModifyStudentServlet extends HttpServlet {
         try {
 
             //String operate = request.getParameter("submit");//教师所选操作：“暂存”或者“提交”
-            String stuno = request.getParameter("stuno");//选修该门课程的所有学生的学号
-            System.out.println(stuno);
+            String stuno = request.getParameter("stuno");
+            //System.out.println(stuno);
 
-            String stupwd = request.getParameter("stupwd");//该门课程的课程号
-            System.out.println(stupwd);
+            String stupwd = request.getParameter("stupwd");
+            //System.out.println(stupwd);
 
-            String stuname = request.getParameter("stuname");//教师录入的分数
-            System.out.println(stuname);
+            String stuname = request.getParameter("stuname");
+            //System.out.println(stuname);
 
-            String stusex = request.getParameter("stusex");//教师录入的分数
-            System.out.println(stusex);
+            String stusex = request.getParameter("stusex");
+            //System.out.println(stusex);
 
             if(stupwd.equals("")||stuname.equals("")||stusex.equals("")){
                 request.setAttribute("erMsg1","请检查学生信息");
