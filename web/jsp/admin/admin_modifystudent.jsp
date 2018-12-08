@@ -14,7 +14,7 @@
         <td>ĞÕÃû</td>
         <td>ĞÔ±ğ</td>
     </tr>
-    <td><div align="center"><input type="text" name="stuno" value="${requestScope.selectedstudent.stuno}"></div></td>
+    <td><div align="center">${requestScope.selectedstudent.stuno}</div></td>
     <td><div align="center"><input type="text" name="stupwd" value="${requestScope.selectedstudent.password}"></div></td>
     <td><div align="center"><input type="text" name="stuname" value="${requestScope.selectedstudent.stuname}"></div></td>
     <td><div align="center"><input type="text" name="stusex" value="${requestScope.selectedstudent.stusex}"></div></td>

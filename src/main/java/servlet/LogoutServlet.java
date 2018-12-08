@@ -14,14 +14,14 @@ public class LogoutServlet extends HttpServlet {
         /*销毁所有session，跳转回登录界面*/
         response.setHeader("Cache-Control","no-cache");
         request.getSession().invalidate();
-        Cookie[] cookies;
-        cookies = request.getCookies();
-        if( cookies != null ){
-            for (Cookie cookie:cookies){
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
-            }
+        //String host = request.getServerName();
+        Cookie[] cookies=request.getCookies();
+        for(Cookie cookie:cookies){
+            cookie.setMaxAge(0);
+            cookie.setPath("/");
+            response.addCookie(cookie);
         }
+
         response.sendRedirect("/index.jsp");
     }
 }

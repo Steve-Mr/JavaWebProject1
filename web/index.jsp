@@ -42,6 +42,7 @@
                         <td colspan="2"><div align="center">
                             <input type="submit" name="submit" value="登录">
                             <input type="reset" name="reset" value="重置">
+                            <input type="checkbox" name="autoLogin" value="autoLogin">两周内自动登录
                         </div></td>
                     </tr>
                     <tr>
