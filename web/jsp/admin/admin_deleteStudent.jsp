@@ -7,8 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-删除成功
+<h2 align="center">删除成功</h2>
 <body>
-
+<%
+    response.setHeader("refresh", "2; URL = /jsp/admin/admin_manageStudents.jsp");
+%>
 </body>
 </html>

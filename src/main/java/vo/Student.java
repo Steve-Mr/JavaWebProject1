@@ -7,7 +7,7 @@ public class Student {
     private String stuname;//姓名
     private String stusex;//性别
 
-    /*各个变量对应的getter和setter方法*/
+
     public String getStusex() {
         return stusex;
     }

@@ -7,7 +7,7 @@
 <%@page import="vo.Teacher"%>
 <%@page import="dao.ScoreDAO"%>
 
-<body bgcolor=#cdf2e3>
+<body>
 <center><font size="+1" color="red">${msg2}</font></center>
 <c:if test="${msg2==null}">
     <form method="post" action="/servlet/Stu_SelectCourseServlet">

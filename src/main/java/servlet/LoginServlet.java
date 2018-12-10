@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
                 cookiePassword!=null && !cookiePassword.equals("")){
             if(cookieType.equals("student")){
                 StudentDAO sdao = new StudentDAO();
+                cookieType = "学生";
                 try{
                     Student student = sdao.getStudentByStuno(cookieAccount);
                     if(student.getPassword().equals(cookiePassword)){
@@ -40,12 +41,17 @@ public class LoginServlet extends HttpServlet {
                         request.getSession().setAttribute("type",cookieType);
                         response.sendRedirect("/jsp/student/stu_ope.jsp");
                     }
+                    else{
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+                        dispatcher.forward(request, response);
+                    }
                 }catch(Exception e){
                     e.printStackTrace();
                 }
             }
             else if(cookieType.equals("teacher")){
                 TeacherDAO tdao = new TeacherDAO();
+                cookieType = "教师";
                 try{
                     Teacher teacher = tdao.getTeacherByTeano(cookieAccount);
                     if(teacher.getPassword().equals(cookiePassword)){
@@ -59,6 +65,7 @@ public class LoginServlet extends HttpServlet {
             }
             else if(cookieType.equals("admin")){
                 AdminDAO adminDAO = new AdminDAO();
+                cookieType = "管理员";
                 try{
                     Admin admin = adminDAO.getAdminByAdmin(cookieAccount);
                     if(admin.getPassword().equals(cookiePassword)){

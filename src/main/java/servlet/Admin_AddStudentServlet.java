@@ -21,16 +21,12 @@ public class Admin_AddStudentServlet extends HttpServlet {
         String stusex = request.getParameter("stusex");
 
         if(stuno.equals("")||stupwd.equals("")||stuname.equals("")||stusex.equals("")){
-            //填入的信息不得为空
             request.setAttribute("erMsg1","输入信息不得为空，请检查学生信息");
         }
-        else{ //拒绝若数据库中以存在相同 stuno 记录
+        else{
             StudentDAO sdao = new StudentDAO();
-            //String checkName="";
             try{
                 Student stu = sdao.getStudentByStuno(stuno);
-                //checkName+= stu.getStuname();
-
                 if(stu!=null){
                     request.setAttribute("erMsg1","该学号已经存在，请检查学生信息");
                 }

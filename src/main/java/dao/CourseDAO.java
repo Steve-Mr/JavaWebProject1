@@ -54,8 +54,7 @@ public class CourseDAO {
     }
 
     public Course getCourseByCourseno(String courseno) throws Exception{//根据课程号获取课程信息
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        this.initConnection();
         Course cou = null;
         String sql = "select * from T_COURSE A join T_TEACHER B on A.teano = B.teano where A.courseno='"+courseno+"'";
         Statement stat = conn.createStatement();
@@ -68,15 +67,14 @@ public class CourseDAO {
             cou.setTeano(rs.getString("TEANO").trim());
             cou.setTeaname(rs.getString("TEANAME").trim());
         }
-        conn.close();
+        this.closeConnection();
 
         return cou;
     }
 
     public ArrayList getCourseByTeano(String teano) throws Exception{//获得相应职工号的开课情况
         ArrayList al = new ArrayList();
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        this.initConnection();
         String sql = "select * from T_COURSE A join T_TEACHER B on A.teano = B.teano where B.teano='"+teano+"'";;
         Statement stat = conn.createStatement();
         ResultSet rs = stat.executeQuery(sql);
@@ -89,15 +87,14 @@ public class CourseDAO {
             cou.setTeaname(rs.getString("TEANAME").trim());
             al.add(cou);
         }
-        conn.close();
+        this.closeConnection();
 
         return al;
     }
 
     public ArrayList getCourseByStuno(String stuno) throws Exception{//获得相应学号选修好的课程
         ArrayList al = new ArrayList();
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        this.initConnection();
         String sql = "select * from T_COURSE A join T_SCORE B on A.courseno=B.courseno join T_TEACHER C on A.teano=C.teano"
                 +" where B.stuno='"+stuno+"'";
         Statement stat = conn.createStatement();
@@ -111,7 +108,7 @@ public class CourseDAO {
             cou.setTeaname(rs.getString("TEANAME").trim());
             al.add(cou);
         }
-        conn.close();
+        this.closeConnection();
 
         return al;
     }
@@ -139,6 +136,7 @@ public class CourseDAO {
     }
 
     public ArrayList queryPage(int currentPageIndex, int countPerPage){
+        //查询分页
         String sql = "SELECT distinct COURSENO,COURSENAME,CREDIT,TEANAME  from T_COURSE A join T_TEACHER B on A.TEANO = B.TEANO LIMIT ?,?";
         ArrayList pageStudents = new ArrayList();
         try{

@@ -45,7 +45,7 @@ public class Stu_SelectCourseServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        /*为简化流程，该系统要求学生选课的总学分刚好满20则选课成功，系统自动向考试成绩表中添加记录；否则，选课失败，界面刷新后仍停留本页面*/
+        //选课的总学分刚好满20则选课成功，系统自动向考试成绩表中添加记录；否则，选课失败，界面刷新后仍停留本页面
         Student stu = (Student)request.getSession().getAttribute("student");
         ScoreDAO sdao = new ScoreDAO();
         CourseDAO cdao = new CourseDAO();

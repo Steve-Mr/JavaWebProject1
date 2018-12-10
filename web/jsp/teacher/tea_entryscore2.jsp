@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="gb2312"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<body bgcolor=#cdf2e3>
+<body>
 <c:choose>
     <c:when test="${msg5!=null}">
         <center><font size="+1" color="red">${msg5}</font></center>

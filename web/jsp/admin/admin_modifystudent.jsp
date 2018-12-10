@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="gb2312"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-<body bgcolor=#cdf2e3>
+<body>
 <center><font size="+1" color="red">${okayMsg1}</font></center>	<br><br>
 <form action="/servlet/Admin_ModifyStudentServlet" method="post">
 <table width="1000" height="200" align="center" border="1" cellpadding="3">

@@ -9,9 +9,19 @@ import java.util.ArrayList;
 
 public class ScoreDAO {
 
-    public ArrayList getScoreByCourseno(String courseno) throws Exception{//获得某课程的考试信息
+    private Connection conn = null;
+
+    public void initConnection() throws Exception{
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+    }
+
+    public void closeConnection() throws Exception{
+        conn.close();
+    }
+
+    public ArrayList getScoreByCourseno(String courseno) throws Exception{//获得某课程的考试信息
+        this.initConnection();
         ArrayList al = new ArrayList();
         Statement stat = conn.createStatement();
         String sql = "select * from T_SCORE A join T_COURSE B on A.courseno=B.courseno join T_STUDENT C on A.stuno=C.stuno"
@@ -26,14 +36,13 @@ public class ScoreDAO {
             sco.setScore(rs.getFloat("score"));
             al.add(sco);
         }
-        conn.close();
+        this.closeConnection();
 
         return al;
     }
 
     public ArrayList getScoreSectionByCourseno(String courseno) throws Exception{//获得某课程的成绩分布
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        this.initConnection();
         ArrayList al = new ArrayList();
         Statement stat = conn.createStatement();
         String sql = "select courseno,coursename,case when score between 0 and 60 then '0-60' "+
@@ -57,14 +66,13 @@ public class ScoreDAO {
             ss.setNumber(rs.getInt("人数"));
             al.add(ss);
         }
-        conn.close();
+        this.closeConnection();
 
         return al;
     }
 
     public ArrayList getScoreByStuno(String stuno) throws Exception{//获得相应学号的考试信息
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        this.initConnection();
         ArrayList al = new ArrayList();
         Statement stat = conn.createStatement();
         String sql = "select * from T_SCORE A join T_STUDENT B on A.stuno=B.stuno join T_COURSE C on A.courseno=C.courseno"
@@ -79,26 +87,24 @@ public class ScoreDAO {
             sco.setScore(rs.getFloat("score"));
             al.add(sco);
         }
-        conn.close();
+        this.closeConnection();
 
         return al;
     }
 
     public void insertScore(Score sco)throws Exception{
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        this.initConnection();
         String sql = "insert into T_SCORE(stuno,courseno) values(?,?)";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, sco.getStuno());
         ps.setString(2, sco.getCourseno());
         ps.executeUpdate();
-        conn.close();
+        this.closeConnection();
 
     }
 
     public void updateScore(Score sco)throws Exception{
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        this.initConnection();
         String sql = "update T_SCORE set score=?,state=? where stuno=? and courseno=?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setFloat(1, sco.getScore());
@@ -106,20 +112,10 @@ public class ScoreDAO {
         ps.setString(3, sco.getStuno());
         ps.setString(4, sco.getCourseno());
         ps.executeUpdate();
-        conn.close();
-
+        this.closeConnection();
     }
 
-    private Connection conn = null;
 
-    public void initConnection() throws Exception{
-        Class.forName("com.mysql.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
-    }
-
-    public void closeConnection() throws Exception{
-        conn.close();
-    }
 
     public int getStudentCount(String courseno){
         String sql ="select COUNT(*) from T_SCORE A join T_COURSE B  on A.courseno=B.courseno join T_STUDENT C on A.stuno=C.stuno"+ " where A.courseno='"+courseno+"'";

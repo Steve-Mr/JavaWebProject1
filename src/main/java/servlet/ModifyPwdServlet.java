@@ -9,6 +9,7 @@ import vo.Teacher;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,7 +46,18 @@ public class ModifyPwdServlet extends HttpServlet {
                     try{
                         sdao.updateStudent(stu);
                     }catch(Exception ex){	ex.printStackTrace();}
-                    request.setAttribute("okMsg9", "密码修改成功！ （为了保证您的帐号安全，建议重新登录！！）");
+
+                    response.setHeader("Cache-Control","no-cache");
+                    request.getSession().invalidate();
+                    //String host = request.getServerName();
+                    Cookie[] cookies=request.getCookies();
+                    for(Cookie cookie:cookies){
+                        cookie.setMaxAge(0);
+                        cookie.setPath("/");
+                        response.addCookie(cookie);
+                    }
+
+                    request.setAttribute("okMsg9", "密码修改成功！ （为了保证您的帐号安全，请重新登录以正常使用。）");
                 }
             }
             else if(type.equals("教师")){
@@ -59,7 +71,18 @@ public class ModifyPwdServlet extends HttpServlet {
                     try{
                         tdao.updateTeacher(tea);
                     }catch(Exception ex){	ex.printStackTrace();}
-                    request.setAttribute("okMsg9", "密码修改成功！ （为了保证您的帐号安全，建议重新登录！！）");
+
+                    response.setHeader("Cache-Control","no-cache");
+                    request.getSession().invalidate();
+                    //String host = request.getServerName();
+                    Cookie[] cookies=request.getCookies();
+                    for(Cookie cookie:cookies){
+                        cookie.setMaxAge(0);
+                        cookie.setPath("/");
+                        response.addCookie(cookie);
+                    }
+
+                    request.setAttribute("okMsg9", "密码修改成功！ （为了保证您的帐号安全，请重新登录以正常使用。）");
                 }
             }
             else if(type.equals("管理员")){
@@ -75,7 +98,18 @@ public class ModifyPwdServlet extends HttpServlet {
                     }catch(Exception ex){
                         ex.printStackTrace();
                     }
-                    request.setAttribute("okMsg9", "密码修改成功！ （为了保证您的帐号安全，建议重新登录！！）");
+
+                    response.setHeader("Cache-Control","no-cache");
+                    request.getSession().invalidate();
+                    //String host = request.getServerName();
+                    Cookie[] cookies=request.getCookies();
+                    for(Cookie cookie:cookies){
+                        cookie.setMaxAge(0);
+                        cookie.setPath("/");
+                        response.addCookie(cookie);
+                    }
+
+                    request.setAttribute("okMsg9", "密码修改成功！ （为了保证您的帐号安全，请重新登录以正常使用。）");
                 }
             }
         }

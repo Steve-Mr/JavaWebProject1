@@ -6,7 +6,7 @@ public class ScoreSection {
     private String section;//分数段
     private int number;//分数段对应的学生人数
 
-    /*各个变量对应的getter和setter方法*/
+
     public String getCourseno() {
         return courseno;
     }

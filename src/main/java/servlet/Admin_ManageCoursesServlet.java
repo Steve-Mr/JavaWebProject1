@@ -18,6 +18,7 @@ public class Admin_ManageCoursesServlet extends HttpServlet {
         int countPerPage = 5;
         HttpSession session = request.getSession();
         String pageIndex = request.getParameter("pageIndex");
+        //默认第一页
         if(pageIndex == null){
             pageIndex = "1";
         }

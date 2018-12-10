@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="gb2312"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<body bgcolor=#cdf2e3>
+<body>
 <center><font size="+1" color="red">${msg7 }</font></center>
 <c:if test="${msg7==null}">
     <form action="/servlet/Tea_ExportScoreServlet" method="post">

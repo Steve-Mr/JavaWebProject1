@@ -4,7 +4,7 @@
 <%@page import="dao.ScoreDAO"%>
 <%@page import="vo.Score"%>
 
-<body bgcolor="#cdf2e3">
+<body>
 <center><font size="+1" color="red">${msg3}</font></center>
 <c:if test="${msg3==null}">
     <form action="/servlet/Stu_ExportScoreServlet" method="post">

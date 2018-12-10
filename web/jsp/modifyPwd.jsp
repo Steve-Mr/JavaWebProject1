@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
-<body bgcolor=#cdf2e3>
+<body>
 <center><font size="+1" color="red">${okMsg9}</font></center>	<br><br>
 <c:if test="${okMsg9==null}">
     <form action="/servlet/ModifyPwdServlet" method="post">

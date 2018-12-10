@@ -40,14 +40,13 @@ public class TeacherDAO {
     }
 
     public void updateTeacher(Teacher tea) throws Exception{
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        this.initConnection();
         String sql = "UPDATE T_TEACHER SET TEAPWD = ? WHERE TEANO =?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1,tea.getPassword());
         ps.setString(2,tea.getTeano());
         ps.executeQuery();
-        conn.close();
+        this.closeConnection();
 
     }
 

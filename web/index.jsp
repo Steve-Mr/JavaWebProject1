@@ -7,11 +7,7 @@
     }
 </script>
 
-<table bgcolor="#cdf2e3" width="100%" height="80%">
-    <tr>
-        <td height="30%" colspan="2"><p><img src="/res/images/img01.jpg" width="1440" height="256"></p>
-        </td>
-    </tr>
+<table width="100%" height="80%">
     <tr>
         <td width="36%" height="40%">
             <form method="post" action="/servlet/LoginServlet" name="form1">
@@ -49,13 +45,9 @@
                         <td colspan="2"><div align="center"><font size="-1" color="red"><b>${msg1}</b></font></div></td>
                     </tr>
                 </table>
-            </form>    </td>
-        <td width="64%"><img src="/res/images/part02.jpg" width="925" height="242"></td>
-    </tr>
-    <tr>
-        <td height="10%" colspan="2"><img src="/res/images/part03.jpg" width="1440" height="36"></td>
+            </form>
+        </td>
     </tr>
 </table>
-<p align="center"><font size="-1" color="#556B2F">COPYRIGHT 2000-2010 BY Á÷éä ALL RIGHTS RESERVED</font></p>
 </body>
 </html>

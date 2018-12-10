@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="gb2312"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-<body bgcolor=#cdf2e3>
+<body>
 <center><font size="+1" color="red">${msg4}</font></center>
 
 <table width="1000" height="200" align="center" border="1" cellpadding="3">
@@ -28,6 +28,7 @@
             当前第${currentPageIndex}页.</font></td>
     </tr>
 </table>
+<h3 align="center">
 <a href="/servlet/Admin_ManageTeachersServlet?pageIndex=1">首页</a>
 <c:if test="${currentPageIndex!=1}">
     <a href="/servlet/Admin_ManageTeachersServlet?pageIndex=${currentPageIndex-1}">上一页</a>
@@ -36,5 +37,6 @@
     <a href="/servlet/Admin_ManageTeachersServlet?pageIndex=${currentPageIndex+1}">下一页</a>
 </c:if>
 <a href="/servlet/Admin_ManageTeachersServlet?pageIndex=${pageCount}">尾页</a>
+</h3>
 </body>
 </html>

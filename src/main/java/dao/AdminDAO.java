@@ -34,6 +34,7 @@ public class AdminDAO {
     }
 
     public void updateAdmin(Admin admin) throws Exception{
+        //重置密码
         this.initConnection();
         String sql = "UPDATE T_ADMIN SET PWD = ? WHERE ADMIN =?";
         PreparedStatement ps = conn.prepareStatement(sql);

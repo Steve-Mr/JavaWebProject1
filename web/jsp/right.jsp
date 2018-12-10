@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
-<body bgcolor="#cdf2e3">
-<center> 欢迎来到GoodEdu教务管理系统！</center>
+<body>
+<center> 欢迎登录。</center>
 </body>
 </html>

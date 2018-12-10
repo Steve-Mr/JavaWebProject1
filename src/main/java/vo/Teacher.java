@@ -8,7 +8,7 @@ public class Teacher {
     private String teasex;//性别
     private String title;//职称
 
-    /*各个变量对应的getter和setter方法*/
+
     public String getTeano() {
         return teano;
     }

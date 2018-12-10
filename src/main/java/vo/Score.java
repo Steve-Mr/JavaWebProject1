@@ -8,7 +8,7 @@ public class Score {
     private float score;//分数
     private String state;//状态（教师可以选择“暂存”或者“提交”录入的成绩，不同的操作对应不同的状态）
 
-    /*各个变量对应的getter和setter方法*/
+
     public String getStuno() {
         return stuno;
     }

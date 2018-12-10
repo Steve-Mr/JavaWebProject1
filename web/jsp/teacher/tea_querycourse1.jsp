@@ -5,7 +5,7 @@
 <%@page import="dao.CourseDAO"%>
 <%@page import="vo.Course"%>
 
-<body bgcolor=#cdf2e3>
+<body>
 <table width="1000" height="200" align="center" border="1" cellpadding="3">
     <tr bgcolor="#B0E0E6">
         <td colspan="5"> 您所开设的课程如下：</td>

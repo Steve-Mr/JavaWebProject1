@@ -8,7 +8,7 @@ public class Course {
     private String teano;//授课教师职工号
     private String teaname;//授课教师姓名
 
-    /*各个变量对应的getter和setter方法*/
+
     public float getCredit() {
         return credit;
     }

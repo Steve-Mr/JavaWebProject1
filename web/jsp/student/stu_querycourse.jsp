@@ -7,7 +7,7 @@
 <%@page import="vo.Teacher"%>
 <%@page import="dao.ScoreDAO"%>
 
-<body bgcolor=#cdf2e3>
+<body>
 <center><font size="+1" color="red">${msg4}</font></center>
 <c:if test="${msg4==null}">
     <table width="1000" height="200" align="center" border="1" cellpadding="3">

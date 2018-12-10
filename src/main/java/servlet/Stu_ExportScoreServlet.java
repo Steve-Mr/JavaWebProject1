@@ -48,6 +48,7 @@ public class Stu_ExportScoreServlet extends HttpServlet {
                 String prefixFont = "";
                 String os = System.getProperties().getProperty("os.name");
                 if (os.startsWith("win") || os.startsWith("Win")) {
+                    //双系统支持
                     prefixFont = "C:\\Windows\\Fonts" + File.separator;
                 } else {
                     prefixFont = "/usr/share/fonts" + File.separator;

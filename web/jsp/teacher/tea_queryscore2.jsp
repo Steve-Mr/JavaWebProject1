@@ -5,7 +5,7 @@
 <%@page import="dao.CourseDAO"%>
 <%@page import="vo.Course"%>
 
-<body bgcolor=#cdf2e3>
+<body>
 <center><font size="+1" color="red">${msg8}</font></center>
 <c:if test="${msg8==null}">
     <br><br>
