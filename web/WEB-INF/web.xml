@@ -137,10 +137,6 @@
         <servlet-name>Admin_ModifyStudentServlet</servlet-name>
         <servlet-class>servlet.Admin_ModifyStudentServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>servlet.UploadServlet</servlet-class>
-    </servlet>
 
 
 
@@ -238,10 +234,7 @@
         <servlet-name>Admin_ModifyStudentServlet</servlet-name>
         <url-pattern>/servlet/Admin_ModifyStudentServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UploadServlet</servlet-name>
-        <url-pattern>/servlet/UploadServlet</url-pattern>
-    </servlet-mapping>
+
 
 
 </web-app>

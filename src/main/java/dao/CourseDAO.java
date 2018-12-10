@@ -8,25 +8,34 @@ import java.util.ArrayList;
 
 public class CourseDAO {
 
+    private Connection conn = null;
+
+    public void initConnection() throws Exception{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+    }
+
+    public void closeConnection() throws Exception{
+        conn.close();
+    }
+
     public ArrayList getAllCoursename() throws Exception{//获得所有课程名称
         ArrayList al = new ArrayList();
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        this.initConnection();
         String sql = "select distinct(coursename) from T_COURSE";
         Statement stat = conn.createStatement();
         ResultSet rs = stat.executeQuery(sql);
         while(rs.next()){
             al.add(rs.getString("COURSENAME").trim());
         }
-        conn.close();
+        this.closeConnection();
 
         return al;
     }
 
     public ArrayList getAllCourse() throws Exception{//获得所有课程
         ArrayList al = new ArrayList();
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
+        this.initConnection();
         String sql = "select * from T_COURSE A join T_TEACHER B on A.TEANO = B.TEANO";
         Statement stat = conn.createStatement();
         ResultSet rs = stat.executeQuery(sql);
@@ -39,7 +48,7 @@ public class CourseDAO {
             cou.setTeaname(rs.getString("TEANAME").trim());
             al.add(cou);
         }
-        conn.close();
+        this.closeConnection();
 
         return al;
     }
@@ -107,16 +116,6 @@ public class CourseDAO {
         return al;
     }
 
-    private Connection conn = null;
-
-    public void initConnection() throws Exception{
-        Class.forName("com.mysql.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://localhost/SCHOOL?useSSL=false&allowPublicKeyRetrieval=true", "scott", "tiger");
-    }
-
-    public void closeConnection() throws Exception{
-        conn.close();
-    }
 
     public int getCourseCount(){ //获取课程总数
         try{

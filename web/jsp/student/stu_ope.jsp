@@ -3,7 +3,37 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.io.File" %>
 <html>
+<%
+    //不保存缓存
+    response.setHeader("Cache-Control", "no-store");
+    response.setDateHeader("Expires", 0);
+
+    PrintWriter pw = response.getWriter();
+    String avatarDir1 = "/avatars/";
+    Student student = (Student) request.getSession().getAttribute("student");
+    String avatarDir2 = student.getStuno();
+    //String avatarDir2 = request.getSession().getAttribute("student.stuno").toString();
+    String avatarDir = avatarDir1+avatarDir2;
+
+    String realPath = request.getSession().getServletContext().getRealPath(avatarDir);
+
+    File file = new File(realPath);
+
+    if(!file.exists()){
+        pw.print("您没有头像，请上传");
+    }else{
+        pw.print("<div><img src=\""+avatarDir+"\" alt=\"我的头像\" height=\"200px\" width=\"200px\"></div>");
+    }
+%>
 <body bgcolor="#cdf2e3">
+<div>
+    <form method="post" action="${pageContext.request.contextPath}/servlet/UploadServlet" enctype="multipart/form-data">
+        选择一个文件:
+        <input type="file" name="uploadFile" />
+        <br>
+        <input type="submit" value="上传" />
+    </form>
+</div>
 <table width="100%" height="100%" border="1">
     <tr height="10%"><td colspan="2"><p><img src="/res/images/img01.jpg"></p></td></tr>
     <tr>
@@ -19,5 +49,6 @@
         <pre style="display:inline"><font color="#556B2F">    ${type }：[${student.stuno}] ${student.stuname }                                                                                                                     COPYRIGHT 2000-2010 BY  流殇  ALL RIGHTS RESERVED</font></pre>
     </td></tr>
 </table>
+
 </body>
 </html>
