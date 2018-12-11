@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Tea_EntryScore2Servlet extends HttpServlet {
+public class Tea_EnterScore2Servlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,7 +30,7 @@ public class Tea_EntryScore2Servlet extends HttpServlet {
                 request.setAttribute("msg5", null);
                 request.setAttribute("scores", scores);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/teacher/tea_entryscore2.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/teacher/tea_enterscore2.jsp");
             dispatcher.forward(request, response); //内部跳转，将处理信息存储在request中
         }catch(Exception ex){	ex.printStackTrace();}
     }
@@ -59,7 +59,7 @@ public class Tea_EntryScore2Servlet extends HttpServlet {
                 }
             }
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/teacher/tea_entryscore2.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/teacher/tea_enterscore2.jsp");
         dispatcher.forward(request, response); //内部跳转，将处理信息存储在request中
     }
 }

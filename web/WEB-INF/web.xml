@@ -64,19 +64,13 @@
         <servlet-class>servlet.Stu_QueryScoreServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Tea_EntryScore1Servlet</servlet-name>
-        <servlet-class>servlet.Tea_EntryScore1Servlet</servlet-class>
+        <servlet-name>Tea_EnterScore1Servlet</servlet-name>
+        <servlet-class>servlet.Tea_EnterScore1Servlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Tea_EntryScore2Servlet</servlet-name>
-        <servlet-class>servlet.Tea_EntryScore2Servlet</servlet-class>
+        <servlet-name>Tea_EnterScore2Servlet</servlet-name>
+        <servlet-class>servlet.Tea_EnterScore2Servlet</servlet-class>
     </servlet>
-    <!--
-    <servlet>
-        <servlet-name>Tea_EntryScore3Servlet</servlet-name>
-        <servlet-class>servlet.Tea_EntryScore3Servlet</servlet-class>
-    </servlet>
-    -->
     <servlet>
         <servlet-name>Tea_QueryCourse1Servlet</servlet-name>
         <servlet-class>servlet.Tea_QueryCourse1Servlet</servlet-class>
@@ -161,19 +155,13 @@
         <url-pattern>/servlet/Stu_QueryScoreServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Tea_EntryScore1Servlet</servlet-name>
-        <url-pattern>/servlet/Tea_EntryScore1Servlet</url-pattern>
+        <servlet-name>Tea_EnterScore1Servlet</servlet-name>
+        <url-pattern>/servlet/Tea_EnterScore1Servlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Tea_EntryScore2Servlet</servlet-name>
-        <url-pattern>/servlet/Tea_EntryScore2Servlet</url-pattern>
+        <servlet-name>Tea_EnterScore2Servlet</servlet-name>
+        <url-pattern>/servlet/Tea_EnterScore2Servlet</url-pattern>
     </servlet-mapping>
-    <!--
-    <servlet-mapping>
-        <servlet-name>Tea_EntryScore3Servlet</servlet-name>
-        <url-pattern>/servlet/Tea_EntryScore3Servlet</url-pattern>
-    </servlet-mapping>
-    -->
     <servlet-mapping>
         <servlet-name>Tea_QueryCourse1Servlet</servlet-name>
         <url-pattern>/servlet/Tea_QueryCourse1Servlet</url-pattern>

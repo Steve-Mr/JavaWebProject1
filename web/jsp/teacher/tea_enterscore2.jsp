@@ -10,7 +10,7 @@
         <center><font size="+1" color="red">${msg6}</font></center>
     </c:when>
     <c:otherwise>
-        <form action="/servlet/Tea_EntryScore2Servlet" method="post">
+        <form action="/servlet/Tea_EnterScore2Servlet" method="post">
             <table width="1000" height="200" align="center" border="1" cellpadding="3">
                 <tr bgcolor="#B0E0E6">
                     <td colspan="5"> »¶Ó­Ç°À´µÇ·Ö£º</td>

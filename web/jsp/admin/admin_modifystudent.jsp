@@ -20,8 +20,10 @@
     <td><div align="center"><input type="text" name="stusex" value="${requestScope.selectedstudent.stusex}"></div></td>
 
 </table>
+    <h2 align="center">
 <td><div><input type="submit" name="submit" value="È·ÈÏÐÞ¸Ä"></div></td>
-    <tr>
+    </h2>
+        <tr>
         <td colspan=2 align=center><font color=red size=-1>${erMsg1}</font></td>
     </tr>
 </form>

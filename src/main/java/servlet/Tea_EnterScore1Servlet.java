@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Tea_EntryScore1Servlet extends HttpServlet {
+public class Tea_EnterScore1Servlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -24,7 +24,7 @@ public class Tea_EntryScore1Servlet extends HttpServlet {
             if(courses.size()!=0){
                 request.setAttribute("courses",courses);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/teacher/tea_entryscore1.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/teacher/tea_enterscore1.jsp");
             dispatcher.forward(request, response); //内部跳转，将处理信息存储在request中
         }catch(Exception ex){	ex.printStackTrace();}
     }
