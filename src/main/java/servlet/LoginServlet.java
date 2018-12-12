@@ -25,9 +25,6 @@ public class LoginServlet extends HttpServlet {
         String cookieAccount = (String)session.getAttribute("account");
         String cookiePassword = (String)session.getAttribute("password");
         String cookieType = (String)session.getAttribute("type");
-        System.out.println(cookieAccount);
-        System.out.println(cookiePassword);
-        System.out.println(cookieType);
 
         if(cookieAccount!=null && !cookieAccount.equals("") &&
                 cookiePassword!=null && !cookiePassword.equals("")){
